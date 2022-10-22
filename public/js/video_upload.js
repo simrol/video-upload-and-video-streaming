@@ -39,7 +39,7 @@ function onComplete(event) {
   if(response.success) {
     document.getElementById('main-div').style.display = 'none';
     customMessage.style.color = '#9C27B0';
-    customMessage.innerHTML = 'Video Uploaded successfully!!. Please <a href='+ response.link +'>click here</a> to view the video.';
+    customMessage.innerHTML = 'Videódat sikeresen feltöltöttük!. Megosztáshoz vagy megtekintéshez,használd az alábbi videólinket <a href='+ response.link +'>Videó megtekintés</a>.';
   } else {
     customMessage.innerHTML = response.error;
     customMessage.style.color = 'red';
@@ -51,6 +51,6 @@ function fileUploadPercentage(e) {
   if (e.lengthComputable) {
     var customMessage = document.getElementById('message');
     var percentage = (e.loaded / e.total) * 100;
-    customMessage.innerHTML = 'Uploading Video: ' + percentage + ' %';
+    customMessage.innerHTML = 'Videód feltöltése: ' + percentage + ' %';
   }
 };
