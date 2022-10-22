@@ -22,7 +22,7 @@ module.exports.uploadFile = function(req, res) {
       });
     }
     const fileId = req.file.filename.split('-')[0];
-    const link = 'http://' + req.hostname + ':' + process.env.PORT + '/video/' + fileId
+    const link = 'http://' + req.hostname +'/video/' + fileId
 
     res.json({
       success: true,
