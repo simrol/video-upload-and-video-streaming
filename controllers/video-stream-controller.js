@@ -210,6 +210,51 @@ const player = IndigoPlayer.init(element, config);
 </head>
 <b><h2>`+ videoName + `</h2></b>
 <b><h4>`+ videoDetails + `</h4></b>
+
+<div class="text-box">
+      <div class="top-area">
+        <h2>Beágyazás</h2>
+
+      </div>
+      <textarea readonly spellcheck="false">
+        <!DOCTYPE html>
+<html>
+<body>
+
+<h1></h1>
+
+<video width="320" height="240" controls>
+  <source src="https://video-upload-and-video-streaming.rolandsimon1.repl.co/video/`+ storedFileName +`/play" type="video/mp4">
+ 
+  Your browser does not support the video tag.
+</video>
+
+</body>
+</html>
+</textarea>
+        <div class="copy-btn"><i class="fas fa-copy"></i> </div>
+        
+    </div>
+
+    <script type="text/javascript">
+    const copyBtn = document.querySelector(".copy-btn");
+    const textarea = document.querySelector("textarea");
+
+    copyBtn.addEventListener("click", () => {
+      textarea.select();
+      document.execCommand("copy");
+      copyBtn.innerHTML = "<i class='fas fa-check'></i>";
+      copyBtn.style.background = "#2DCDA7";
+      copyBtn.style.color = "#fff";
+
+      setTimeout(() => {
+        document.getSelection().removeAllRanges();
+        copyBtn.innerHTML = "<i class='fas fa-copy'></i>";
+        copyBtn.style.background = "";
+        copyBtn.style.color = "";
+      }, 5000);
+    });
+    </script>
   <div id="disqus_thread"></div>
 <script>
     /**
