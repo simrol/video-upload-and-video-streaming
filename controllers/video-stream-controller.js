@@ -32,7 +32,7 @@ function streamVideoFile(req, res, video_file){
 module.exports.renderVideo = function(req, res) {
   const fileDetails = handleDb.getFile(req.params.id);
   if(!fileDetails) {
-    return res.send('INVALID FILE ID')
+    return res.send('A videó nem található.')
   }
   const storedFileName = fileDetails.path.split('/')[1];
   const videoDetails = fileDetails.details || 'NA';
