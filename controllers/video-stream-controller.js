@@ -35,7 +35,7 @@ module.exports.renderVideo = function(req, res) {
     return res.send('A videó nem található.')
   }
   const storedFileName = fileDetails.path.split('/')[1];
-  const videoDetails = fileDetails.details || 'NA';
+  const videoDetails = fileDetails.details || 'Nincs leírása ennek a videónak.';
   const videoName = fileDetails.name;
   const index_file = `
   <!DOCTYPE html>
@@ -123,7 +123,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>`+ videoDetails + `</title>
+  <title>`+ videoName + `</title>
   <style media="screen">
     body {
   height: 100vh;
