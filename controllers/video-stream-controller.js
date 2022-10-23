@@ -208,8 +208,9 @@ const player = IndigoPlayer.init(element, config);
     </style>
   
 </head>
+<b><h2>`+ videoName + `</h2></b>
+<b><h4>`+ videoDetails + `</h4></b>
   <div id="disqus_thread"></div>
-  `+ videoName + `
 <script>
     /**
     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
