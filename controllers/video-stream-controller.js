@@ -255,6 +255,25 @@ const player = IndigoPlayer.init(element, config);
       }, 5000);
     });
     </script>
+    <input type="text" value="https://video-upload-and-video-streaming.rolandsimon1.repl.co/video/`+ storedFileName +`/play" id="myInput">
+<button onclick="myFunction()">Videó elérési útjának másolása</button>
+
+<script>
+function myFunction() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+  
+  // Alert the copied text
+  alert("Ez a videó elérési útja,innentől kezdve betudod ágyazni,letölteni ilyesmi. ");
+}
+</script>
   <div id="disqus_thread"></div>
 <script>
     /**
