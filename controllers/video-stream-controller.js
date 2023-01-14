@@ -148,24 +148,56 @@ body {font-family: Arial, Helvetica, sans-serif;}
   </style>
 </head>
 <body>
+<!-- Docs styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CDNSFree2/Plyr/plyr.css" />
+
+<!--Add a Simple HTML5 Video tag-->
 <div id="container">
-  <div id="player-container"></div>
+  <video controls data-poster="" class="vid1">
+    <!-- Video files -->
+    <source src="/video/`+ storedFileName +`/play" type="video/mp4" size="576" />
+
+    <!-- Caption files -->
+    <track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt" default />
+    <track kind="captions" label="Français" srclang="fr" src="" />
+
+  </video>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/indigo-player@1/lib/indigo-player.js"></script>
-<script type="text/javascript">
-const videoUrl = '/video/`+ storedFileName +`/play';
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.6.7/plyr.min.js"></script>
 
-const config = {
-  sources: [{
-    type: 'mp4',
-    src: videoUrl,
-  }]
-};
+<script>
+  var controls =
+[
+    'play-large', // The large play button in the center
+   // 'restart', // Restart playback
+   // 'rewind', // Rewind by the seek time (default 10 seconds)
+    'play', // Play/pause playback
+    'fast-forward', // Fast forward by the seek time (default 10 seconds)
+    'progress', // The progress bar and scrubber for playback and buffering
+    'current-time', // The current time of playback
+    'duration', // The full duration of the media
+    'mute', // Toggle mute
+    'volume', // Volume control
+    'captions', // Toggle captions
+    'settings', // Settings menu
+    'pip', // Picture-in-picture (currently Safari only)
+    'airplay', // Airplay (currently Safari only)
+    'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
+    'fullscreen' // Toggle fullscreen
+];
 
-const element = document.getElementById('player-container');
-const player = IndigoPlayer.init(element, config);
+  const player = new Plyr('.vid1',{controls});
 </script>
+
+<style>
+  :root {
+  --plyr-color-main: #e657ff;
+    --plyr-video-control-color	:#e8ffba;
+}
+
+</style>
+
 </body>
 </html>
 
