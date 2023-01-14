@@ -147,7 +147,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
   </style>
 </head>
-<body>
+<center><body>
 <!-- Docs styles -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CDNSFree2/Plyr/plyr.css" />
 
@@ -196,7 +196,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     --plyr-video-control-color	:#FFFFFF;
 }
 
-</style>
+</style></center>
 
 </body>
 </html>
