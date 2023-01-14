@@ -157,9 +157,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     <!-- Video files -->
     <source src="/video/`+ storedFileName +`/play" type="video/mp4" size="576" />
 
-    <!-- Caption files -->
-    <track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt" default />
-    <track kind="captions" label="Français" srclang="fr" src="" />
+    
 
   </video>
 </div>
