@@ -192,8 +192,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 <style>
   :root {
-  --plyr-color-main: #e657ff;
-    --plyr-video-control-color	:#e8ffba;
+  --plyr-color-main: #3B618C;
+    --plyr-video-control-color	:#FFFFFF;
 }
 
 </style>
