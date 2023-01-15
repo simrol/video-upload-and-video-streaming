@@ -37,116 +37,18 @@ module.exports.renderVideo = function(req, res) {
   const storedFileName = fileDetails.path.split('/')[1];
   const videoDetails = fileDetails.details || 'Nincs leírása ennek a videónak.';
   const videoName = fileDetails.name;
-  const index_file = `
-  <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
+  const index_file = `<div class="better">
+<style id="custom_skin">
+  div.flowplayer .fp-color { background-color: #fff }
+  .flowplayer { max-width: 800px }
+  .use-controlbar-background .fp-controls { background-color: rgba(0,0,0,.6) }
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
+  /* Force controls to be visible initially. Do not use in production. */
+  .flowplayer .fp-controls { visibility: visible; opacity: 1; }
+  .flowplayer .fp-footer { display: none }
+  .flowplayer .fp-progress { width: 50% }
 </style>
-</head>
-<body>
 
-<h2>`+ videoName + `</h2>
-
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Lejátszás</button>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p><!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: black;
-   color: white;
-   text-align: center;
-}
-</style>
-</head>
-<body>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>`+ videoName + `</title>
-  <style media="screen">
-    body {
-  height: 100vh;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1062b9;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-#container {
-  width: auto;
-  width: 90vmin;
-  border: 3px solid white;
-  border-radius: 5px;
-  box-shadow: 0 0 300px #333;
-}
-  </style>
-</head>
 <center><body>
 <!-- Docs styles -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CDNSFree2/Plyr/plyr.css" />
@@ -155,10 +57,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <div id="container">
   <video controls data-poster="" class="vid1">
     <!-- Video files -->
-    <source src="/video/`+ storedFileName +`/play" type="video/mp4" size="576" />
-
+    <source src="/video/`+ storedFileName +`/play" type="video/mp4" size="480" />
     
-
   </video>
 </div>
 
@@ -190,179 +90,106 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 <style>
   :root {
-  --plyr-color-main: #3B618C;
+  --plyr-color-main: #3A59B3;
     --plyr-video-control-color	:#FFFFFF;
 }
 
 </style></center>
-
-</body>
-</html>
-
-<div class="footer">
-  <p>Ezt az oldalt kezeli a bot.dunkelmann.hu domain.</p>
-</div>
-<!DOCTYPE html>
-<html>
-  
-<head>
-    <style type="text/css">
-        .context-menu {
-            position: absolute;
-            text-align: center;
-            background: lightgray;
-            border: 1px solid black;
-        }
-  
-        .context-menu ul {
-            padding: 0px;
-            margin: 0px;
-            min-width: 150px;
-            list-style: none;
-        }
-  
-        .context-menu ul li {
-            padding-bottom: 7px;
-            padding-top: 7px;
-            border: 1px solid black;
-        }
-  
-        .context-menu ul li a {
-            text-decoration: none;
-            color: black;
-        }
-  
-        .context-menu ul li:hover {
-            background: darkgray;
-        }
-    </style>
-  
-</head>
-<b><h2>`+ videoName + `</h2></b>
-<b><h4>`+ videoDetails + `</h4></b>
-
-<div class="text-box">
-      <div class="top-area">
-        <h2>Beágyazás</h2>
-
-      </div>
-      <textarea readonly spellcheck="false">
-        <!DOCTYPE html>
-<html>
-<body>
-
-<h1></h1>
-
-<video width="320" height="240" controls>
-  <source src="https://video-upload-and-video-streaming.rolandsimon1.repl.co/video/`+ storedFileName +`/play" type="video/mp4">
- 
-  Your browser does not support the video tag.
-</video>
-
-</body>
-</html>
-</textarea>
-        <div class="copy-btn"><i class="fas fa-copy"></i> </div>
-        
-    </div>
-
-    <script type="text/javascript">
-    const copyBtn = document.querySelector(".copy-btn");
-    const textarea = document.querySelector("textarea");
-
-    copyBtn.addEventListener("click", () => {
-      textarea.select();
-      document.execCommand("copy");
-      copyBtn.innerHTML = "<i class='fas fa-check'></i>";
-      copyBtn.style.background = "#2DCDA7";
-      copyBtn.style.color = "#fff";
-
-      setTimeout(() => {
-        document.getSelection().removeAllRanges();
-        copyBtn.innerHTML = "<i class='fas fa-copy'></i>";
-        copyBtn.style.background = "";
-        copyBtn.style.color = "";
-      }, 5000);
-    });
-    </script>
-    <input type="text" value="https://video-upload-and-video-streaming.rolandsimon1.repl.co/video/`+ storedFileName +`/play" id="myInput">
-<button onclick="myFunction()">Videó elérési útjának másolása</button>
-
-<script>
-function myFunction() {
-  // Get the text field
-  var copyText = document.getElementById("myInput");
-
-  // Select the text field
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); // For mobile devices
-
-  // Copy the text inside the text field
-  navigator.clipboard.writeText(copyText.value);
-  
-  // Alert the copied text
-  alert("Ez a videó elérési útja,innentől kezdve betudod ágyazni,letölteni ilyesmi. ");
-}
-</script>
-  <div id="disqus_thread"></div>
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://sexvideos-2.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-</body>
-<script type="text/javascript">!(function(o,n){function $(){($.q=$.q||[]).push(arguments)}$.v=1,o[n]=o[n]||$})(window,String.fromCharCode(97,100,109,105,114,97,108));!(function(t,c,i){i=t.createElement(c),t=t.getElementsByTagName(c)[0],i.async=1,i.src="https://distributionneck.com/v2mtdSsLpA7L8MaI7CNCp7r2l3kn-EsJmkKNgXiW4Moxx6r3g25S2ppo",t.parentNode.insertBefore(i,t)})(document,"script");;!(function(o,t,n,c){function e(n){(function(){try{return(localStorage.getItem("v4ac1eiZr0")||"").split(",")[4]>0}catch(o){}return!1})()&&(n=o[t].pubads())&&n.setTargeting("admiral-engaged","true")}(c=o[t]=o[t]||{}).cmd=c.cmd||[],typeof c.pubads===n?e():typeof c.cmd.unshift===n?c.cmd.unshift(e):c.cmd.push(e)})(window,"googletag","function");</script>
-</body>
-</html> 
-</p>
+  <div class="text">`+ videoName + `</div>
+<div class="rubik">
+<img src="https://download.flaticon.com/download/icon/42253?icon_id=42253&author=1&team=1&keyword=Calendar+tool+for+time+organization&pack=111031&style=1&style_id=0&format=png&color=%23000000&colored=1&size=32&selection=1&premium=0&type=standard&token=03AGdBq258XTPd1bFs6N4AeEOLwNMKZ0UBODkoMzwsFsqVaOaGKvAzOK0Ol9qWBnVLm6YjEYJ2kZVzhqJVX835I0UjUnRyO0s1RFShppHacurZmin9KLG3VKwOOvEG2cOvaVyYwLrvP7W3cTxVq_u8C59qETHAt763BaFX3uJ28Xo4xDUzmgaRCGCA1ScL6NL6mYVusFOtjeuMJi0xEzkj8G5-KN8lMtZ7ugnVh32bg2QC5fORrgFPX1Vo7EWLXJ0Igd3FomAAaIc3vY1fMPc5TPqNnUCE3K0-dmN6_37cmf4Qrrwv1YJI8tuEeepkE0sjoRsM-uod1ZnMcP3oZgNVg-ASQAKJBcSNM2YBoYcuibGzrOi7TB17szrBV9RIs15_lfG3AoerJOzMglp9RZCbko7kaHJXWb-BHLPpg_YlEQ4LwMc5zUoRTVcyyyfLHOEm3GNxfRqlfQ0zLB0jCbLdagv4gi7O-PYUCs4JaaeN4s9fVlg_Wfo2P1nas27hM2lKjCoYo2GxYe_vj6m7eI4WnTZsuOa1ii5QDbdZuyH3VdsU0SBLhkugxea9wUc6e8qOqF5WnAOHewZfYeDlqXFwGmtN_3IWXHNmsppXAHC2ew-a5RlvkCiAmWpr0jjNarFrtNaiSqXq0-EaPFUtH1gMhSj1gAYK8oCzGtA5YvRj-8t5c8mpSylmhks0DjwQ_gwj_R700Heylu1cW_NFRDvMQn3_IvoB2NuNisIUyY8NfUek6DPmFe2niV7hoK37MEIBGicE20DTREk_L53HseVMHgeo11n_J2exUqG_dAxuPdPeoTQsWTGrepHoPX4fGF7qisLI-o1vhmM5Av0Tg5ympz5lGQlEkSyCk-rBduVZhlIldxzf_6ZQINkyZFw9P483o0ujkSI0gtqg4QtZSBltTJY2pA8L22m8eGbXpNGqBIVwQAgN7ehd2vYPAgHec5wLRHWgNf9DqGFFfCbH-2LV4WPtBzkZaJ-FzCxOcna9MjbBCsxbxO4tAf6FN83L2wx6dp80e34YEgAMdWBP567XbTN1H7WrgSXPSH_hEfrra-em2bsM_5umy0thhUW8eW2rsQrTYyBP-_Aaun8gDOED5CRTfZtc_XxuZBE45xF1LkBWScLDjo8NYp8_c_kffGcUyoarTemdv0kv_udKcBAtz-b047zJKUjM1ZWKjwt5NaSm9X0wOQ3jafvM5eS7-nIhg4mrU4rQVMSalWTZvGJNkddpqiD7weBqBdDZpL1diA553TYPl_uSDoylDZdJ_edXTgtUx-vHCPpsbWTDcqv0f_8y7RO4m6Gqxx6-YgA15Zk2e-5Qu2xshQzRSHynM7Vq6G5mZpCqAtA-DESk32jZb8SGEdiFmFhBchhLIb-5eNIWHMA0ufuM_-ZfLWdOh_fj_5NmrwTs4Qegv4kNOrTsTp3e-_k3vQWj2S_H1hytDZwSoBQXx23PBCTRseerOz44fuV0IMpgGV2DirgCRWLRies0l1zj0ebuKFFx57wXpU_aUfIiFJIeBhSOiBSLZvfgEXS7ppSTr3MWKoalGfoyy2RAUnNwFN1Rz4gB-k2fkGkEK4-r8_YrGcdYXt-S3aUqrdywcIp7ChYp&_gl=1*q0y5yr*_ga*NDA3NTAwODY5LjE2Mjg5MzQwMjI.*_ga_3Q8LH3P0VP*MTYyODkzNDAyMi4xLjEuMTYyODkzNDAyNy4w" width="15">
+  <font size="6">`+ videoDetails + `</font>
+  <div class="voltaire">
+    
+         
+         
+         
+         
+     
+    <a href="https://rave.dj/u/cloneable"><img src="https://d3kjiohsmfpss9.cloudfront.net/avatar/b8bddfb4-aab9-4772-b9d7-083758bbada0-TEYUHDPHMQQN-256.jpeg" width="20"></a>
+      
+   
+    <font size="5">Ismeretlen feltöltő</font>
   </div>
-
-</div>
-
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-
+  <!-- LikeBtn.com BEGIN -->
+<span class="likebtn-wrapper" data-theme="padded" data-ef_voting="wobble" data-white_label="true" data-identifier="item_1" data-popup_disabled="true" data-popup_dislike="true" data-popup_position="bottom" data-popup_style="dark" data-popup_width="150" data-popup_donate="{&quot;purpose&quot;:&quot;&quot;,&quot;payment_systems&quot;:[]}" data-lazy_load="true" data-loader_show="true"></span>
+<script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+<!-- LikeBtn.com END -->
+  </div>
+  <body>
+    <div class="rate">                                  
+    <input type="radio" id="star5" name="rate" value="5" />
+    <label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="rate" value="4" />
+    <label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="rate" value="3" />
+    <label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="rate" value="2" />
+    <label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star1" name="rate" value="1" />
+    <label for="star1" title="text">1 star</label>
+  </div>
 </body>
-</html>`;
+ <style>@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Voltaire&display=swap');
+
+.voltaire {
+  font-family: 'voltaire';
+}
+
+.better {
+  padding: 35px;
+  padding-left: 40px;
+}
+
+.text {
+  font-family: 'Rubik', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.rubik {
+  font-family: 'Rubik';
+}
+
+.rate {
+    float: left;
+    height: 46px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:15px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+
+
+</style>`;
   res.send(index_file);
 
 }
