@@ -42,7 +42,7 @@ module.exports.renderVideo = function(req, res) {
     <div class="wrapper">
       <header class="myheader">
         <div class="myheader-inner">
-          <h1 class="logo">Videóoldal</h1>
+          <h1  class="logo">Videóoldal</h1>
         </div>
       </header>
       <main>
@@ -94,10 +94,17 @@ module.exports.renderVideo = function(req, res) {
 </style></center>
           <h2>`+ videoName + `</h2>
           <h4>`+ videoDetails + `</h4>
+          <h3>Megosztási lehetőségek</h3>
+          <p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = 
+"" + window.location.href;
+</script>
       </main>
       <footer class="footer">
         <div class="footer-inner">
-          <h1 class="logo">Videóoldal vége</h1>
+          <h1 class="logo">Videóoldal szabad reklám megjelenítő sáv</h1>
         </div>
       </footer>
     </div>
