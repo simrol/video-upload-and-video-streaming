@@ -13,7 +13,7 @@ function setENV(str) {
 }
 
 function config() {
-var fileName = '.env';
+var fileName = '.replit';
     try {
         result = fs.readFileSync(fileName,{encoding: 'utf8'})
         setENV(result);
