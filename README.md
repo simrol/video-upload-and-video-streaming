@@ -1,18 +1,12 @@
-# Video Upload & Video Streaming
-A Video upload and Video streaming web application, made using Node JS &amp; Express JS
-## Getting Started
+# Videó feltöltő
+
+## Start
 1. npm install
 2. npm start
-3. Go the browser & type http://localhost:3000
+3. Menj fel a webcímre
 
 
-### Prerequisites
-1. Node JS ( Any version > 5.0.0)
-2. NPM (Any version 3.8.0)
+### Ami kell:
+1. Node JS ( bármilyen verzió > 5.0.0)
+2. NPM (bármilyen verzió 3.8.0)
 
-## Built With
-
-* [Node](https://nodejs.org) - A JavaScript runtime built on Chrome's V8 JavaScript engine
-* [Express](https://expressjs.com) - A web framework for Node.js
-
-*_Update_*: The heroku app link (https://video-upload-and-stream.herokuapp.com/) might not work. The heroko has made some restrictions on free dynos
